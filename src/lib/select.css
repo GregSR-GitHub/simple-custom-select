@@ -1,0 +1,59 @@
+.select-wrapper{
+    position: relative;
+}
+
+.select-button{
+    position: relative;
+    width: 100%;
+    list-style-type: none;
+    font-size: 1em;
+    margin: 0;
+}
+
+.select-list{
+    position: absolute;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: white;
+    color: black;
+    margin: 0;
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid black;
+}
+
+.select-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5px;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+  }
+
+.select-arrow::before {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: rotate(45deg) translateY(4px);
+    width: 10px;
+    height: 2px;
+    content: "";
+    z-index: 12;
+    background-color: black;
+  }
+
+.select-arrow::after {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: rotate(-45deg) translateY(4px);
+    width: 10px;
+    height: 2px;
+    content: "";
+    z-index: 12;
+    background-color: black;
+  }
+  
