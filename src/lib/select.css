@@ -1,8 +1,8 @@
-.select-wrapper{
+.custom-select-wrapper{
     position: relative;
 }
 
-.select-button{
+.custom-select-button{
     position: relative;
     width: 100%;
     list-style-type: none;
@@ -10,7 +10,7 @@
     margin: 0;
 }
 
-.select-list{
+.custom-select-list{
     position: absolute;
     display: flex;
     flex-flow: column nowrap;
@@ -21,9 +21,18 @@
     list-style-type: none;
     padding: 0;
     border: 1px solid black;
+    box-shadow: 1px 1px 3px black;
 }
 
-.select-arrow {
+.custom-select-option:hover {
+    background-color: #e9e9ed;
+  }
+
+.custom-select-option:focus {
+    background-color: #e9e9ed;
+  }
+
+.custom-select-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -33,7 +42,7 @@
     cursor: pointer;
   }
 
-.select-arrow::before {
+.custom-select-arrow::before {
     position: absolute;
     right: 50%;
     top: 50%;
@@ -45,7 +54,7 @@
     background-color: black;
   }
 
-.select-arrow::after {
+.custom-select-arrow::after {
     position: absolute;
     right: 50%;
     top: 50%;
