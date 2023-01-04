@@ -1,7 +1,8 @@
 import './select.css';
 import { useState } from 'react'
+import { useEffect } from 'react';
 
-function SimpleCustomSelect({name, options}) {
+function SimpleCustomSelect({name, options, setState}) {
     const [isOpen, setIsOpen] = useState(false);
     const [isSelected, setIsSelected] = useState(0);
     let option = {};
@@ -13,9 +14,14 @@ function SimpleCustomSelect({name, options}) {
         option = {value: options[isSelected], name: options[isSelected]};
     }
 
+    // Update custom state if one
+    useEffect(() => { 
+       setState&&setState(option.value);
+     });
+    
     // If no name use this default one
     if(!name){
-        name = "custom-select";
+        name = "my-custom-select";
     }
 
     // Enter Keyboard can select an option
@@ -28,10 +34,11 @@ function SimpleCustomSelect({name, options}) {
     };
 
     return (
-        <div id={name + "-wrapper"} className="custom-select-wrapper">
+        <div id={name + "-wrapper"} 
+            className="custom-select_wrapper">
             <button 
             id={name + "-button"} 
-            className="custom-select-button" 
+            className={"custom-select_button " + name + "_button"}
             value={option.value} 
             aria-haspopup="listbox" 
             aria-expanded={isOpen}  
@@ -39,14 +46,20 @@ function SimpleCustomSelect({name, options}) {
             onClick={(e) => setIsOpen(!isOpen)}
             >
                 {option.name}
-                <span  className="custom-select-arrow"></span>
+                <span className="custom-select_arrow"></span>
             </button>
             {isOpen&&
-            <ul  id={name + "-list"} role="listbox" className="custom-select-list" aria-activedescendant={name + "-option" + isSelected} tabIndex={-1}>
+            <ul  
+            id={name + "-list"} 
+            role="listbox" 
+            className={"custom-select_list " + name + "_list"} 
+            aria-activedescendant={name + "-option" + isSelected} 
+            tabIndex={-1}
+            >
                 { options.map((element, index) => (
                 <li 
                     id={name + "-option" + index}
-                    className="custom-select-option" 
+                    className={"custom-select_option " + name + "_option"} 
                     key={`${name}-${index}`} 
                     role="option" 
                     aria-selected={isSelected === index}  

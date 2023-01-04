@@ -12,7 +12,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <div>
-          <SimpleCustomSelect options={options} name="test-select"/>
+          <SimpleCustomSelect options={options} name="test-select" setState={setSelect}/>
           Vous avez selectionné: {JSON.stringify(select)}.
         </div>
       </header>
