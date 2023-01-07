@@ -1,10 +1,10 @@
 import './select.css';
-import { useState } from 'react'
-import { useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react'
 
 function SimpleCustomSelect({name, options, setState}) {
     const [isOpen, setIsOpen] = useState(false);
     const [isSelected, setIsSelected] = useState(0);
+    let selectRef = useRef();
     let option = {};
 
     // Selected option must be an object
@@ -33,9 +33,28 @@ function SimpleCustomSelect({name, options, setState}) {
         }
     };
 
+    // Close component if user clic outside
+    useEffect(() => {
+
+        function handleClickOutside(event){
+            if(!selectRef.current.contains(event.target)){
+              setIsOpen(false);  
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+    }, []);
+
     return (
-        <div id={name + "-wrapper"} 
-            className="custom-select_wrapper">
+        <div 
+        id={name + "-wrapper"} 
+        className={"custom-select_wrapper " + name + "_wrapper"} 
+        ref={selectRef}
+        >
             <button 
             id={name + "-button"} 
             className={"custom-select_button " + name + "_button"}
