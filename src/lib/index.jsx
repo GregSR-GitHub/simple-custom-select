@@ -24,6 +24,11 @@ function SimpleCustomSelect({name, options, setState}) {
         name = "my-custom-select";
     }
 
+    function handleButtonClick(event){
+        event.preventDefault();
+        setIsOpen(!isOpen)
+    }
+
     // Enter Keyboard can select an option
     function handleEnter(index,event){
         if(event.key==="Enter") {
@@ -56,13 +61,13 @@ function SimpleCustomSelect({name, options, setState}) {
         ref={selectRef}
         >
             <button 
-            id={name + "-button"} 
+            id={name} 
             className={"custom-select_button " + name + "_button"}
             value={option.value} 
             aria-haspopup="listbox" 
             aria-expanded={isOpen}  
             aria-labelledby={name + "-option" + isSelected}
-            onClick={(e) => setIsOpen(!isOpen)}
+            onClick={(e) => handleButtonClick(e)}
             >
                 {option.name}
                 <span className="custom-select_arrow"></span>
